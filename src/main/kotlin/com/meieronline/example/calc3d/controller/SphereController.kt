@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import com.meieronline.example.calc3d.model.Sphere
+import org.springframework.http.HttpStatus
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 class SphereController {
@@ -14,7 +16,7 @@ class SphereController {
             @RequestParam(required = true) radius: Double
     ): String {
         if( radius < 0) {
-            throw IllegalArgumentException("length must be a positive number")
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "radius must be a positive number")
         }
         val result = Sphere(radius).area()
         return result.toString()
@@ -25,7 +27,7 @@ class SphereController {
             @RequestParam(required = true) radius: Double
     ): String {
         if( radius < 0) {
-            throw IllegalArgumentException("length must be a positive number")
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "radius must be a positive number")
         }
         val result = Sphere(radius).volume()
         return result.toString()

@@ -1,10 +1,11 @@
 package com.meieronline.example.calc3d.controller
 
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import com.meieronline.example.calc3d.model.Cube
+import org.springframework.http.HttpStatus
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 class CubeController {
@@ -14,7 +15,7 @@ class CubeController {
             @RequestParam(required = true) length: Double
     ): String {
         if( length < 0) {
-            throw IllegalArgumentException("length must be a positive number")
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "length must be a positive number")
         }
         val result = Cube(length).area()
         return result.toString()
@@ -25,7 +26,7 @@ class CubeController {
             @RequestParam(required = true) length: Double
     ): String {
         if( length < 0) {
-            throw IllegalArgumentException("length must be a positive number")
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "length must be a positive number")
         }
         val result = Cube(length).volume()
         return result.toString()
