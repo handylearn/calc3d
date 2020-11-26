@@ -23,8 +23,10 @@ internal class CubeTest {
         val testData = arrayOf(
                 Pair(0.0, 0.0),
                 Pair(0.5, 1.5),
-                Pair(1.0, 1.0),
-                Pair(1000.0, 6000000.0))
+                Pair(1.0, 6.0),
+                Pair(1000.0, 6000000.0),
+                Pair(1e6, 6e12))
+
 
         testData.forEach{(input, expected) ->
 
