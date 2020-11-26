@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.withPrecision
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.params.provider.CsvFileSource
 
 internal class CubeTest {
 
@@ -19,17 +20,24 @@ internal class CubeTest {
 
     @Test
     fun area() {
-        val length = 5.0
+        val testData = arrayOf(
+                Pair(0.0, 0.0),
+                Pair(0.5, 1.5),
+                Pair(1.0, 1.0),
+                Pair(1000.0, 6000000.0))
 
-        val result = Cube(length).area()
+        testData.forEach{(input, expected) ->
 
-        assertThat(result).isEqualTo(150.0, withPrecision(0.01))
+            val result = Cube(input).area()
+
+            assertThat(result).isEqualTo(expected, withPrecision(0.01))
+        }
     }
 
     @Test
     fun equals() {
         val a = Cube(12.0)
         val b = Cube(12.0)
-        assertThat(a).isEqualTo(b)
+        assertThat(a == b).isTrue()
     }
 }

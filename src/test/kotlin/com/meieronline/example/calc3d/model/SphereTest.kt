@@ -30,6 +30,6 @@ internal class SphereTest {
     fun equals() {
         val a = Sphere(12.0)
         val b = Sphere(12.0)
-        assertThat(a).isEqualTo(b)
+        assertThat(a == b).isTrue()
     }
 }
